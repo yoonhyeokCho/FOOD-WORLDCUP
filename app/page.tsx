@@ -8,6 +8,7 @@ import CategorySelectionScreen from "@/components/category-selection-screen";
 import TournamentScreen from "@/components/tournament-screen";
 import ResultScreen from "@/components/result-screen";
 import PacmanGame from "@/components/pacman-game";
+import { CardGame } from "@/components/card-game";
 
 export type Screen =
   | "intro"
@@ -15,7 +16,9 @@ export type Screen =
   | "category"
   | "tournament"
   | "result"
-  | "pacman";
+  | "pacman"
+  | "cardGame"; // ✅ 여기에 포함시켜야 함
+
 export type FoodCategory = "한식" | "중식" | "일식" | "양식" | "기타";
 
 export interface Food {
@@ -61,19 +64,23 @@ export default function FoodWorldCup() {
             onStart={() => handleScreenChange("choice")}
           />
         )}
+
         {currentScreen === "choice" && (
           <ChoiceBranchScreen
             key="choice"
             onSelectUndecided={() => handleScreenChange("category")}
-            onSelectDecided={() => handleScreenChange("pacman")}
+            onSelectPacman={() => handleScreenChange("pacman")}
+            onSelectCardGame={() => handleScreenChange("cardGame")}
           />
         )}
+
         {currentScreen === "category" && (
           <CategorySelectionScreen
             key="category"
             onCategorySelect={handleCategorySelect}
           />
         )}
+
         {currentScreen === "tournament" && selectedCategory && (
           <TournamentScreen
             key="tournament"
@@ -81,6 +88,7 @@ export default function FoodWorldCup() {
             onComplete={handleTournamentComplete}
           />
         )}
+
         {currentScreen === "result" && finalWinner && (
           <ResultScreen
             key="result"
@@ -88,12 +96,15 @@ export default function FoodWorldCup() {
             onRestart={handleRestart}
           />
         )}
+
         {currentScreen === "pacman" && (
           <PacmanGame
             key="pacman"
             onBack={() => handleScreenChange("choice")}
           />
         )}
+
+        {currentScreen === "cardGame" && <CardGame key="cardGame" />}
       </AnimatePresence>
     </div>
   );
