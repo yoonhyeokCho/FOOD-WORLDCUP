@@ -1,14 +1,17 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 interface ChoiceBranchScreenProps {
-  onSelectUndecided: () => void
-  onSelectDecided: () => void
+  onSelectUndecided: () => void;
+  onSelectDecided: () => void;
 }
 
-export default function ChoiceBranchScreen({ onSelectUndecided, onSelectDecided }: ChoiceBranchScreenProps) {
+export default function ChoiceBranchScreen({
+  onSelectUndecided,
+  onSelectDecided,
+}: ChoiceBranchScreenProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -26,13 +29,19 @@ export default function ChoiceBranchScreen({ onSelectUndecided, onSelectDecided 
             {/* Upper Teeth */}
             <div className="absolute top-32 left-1/2 transform -translate-x-1/2 flex space-x-2">
               {[...Array(12)].map((_, i) => (
-                <div key={i} className="w-6 h-12 bg-white rounded-b-lg shadow-lg" />
+                <div
+                  key={i}
+                  className="w-6 h-12 bg-white rounded-b-lg shadow-lg"
+                />
               ))}
             </div>
             {/* Lower Teeth */}
             <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex space-x-2">
               {[...Array(12)].map((_, i) => (
-                <div key={i} className="w-6 h-12 bg-white rounded-t-lg shadow-lg" />
+                <div
+                  key={i}
+                  className="w-6 h-12 bg-white rounded-t-lg shadow-lg"
+                />
               ))}
             </div>
           </div>
@@ -79,5 +88,5 @@ export default function ChoiceBranchScreen({ onSelectUndecided, onSelectDecided 
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
