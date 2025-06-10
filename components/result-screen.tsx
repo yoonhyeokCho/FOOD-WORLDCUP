@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import type { Food } from "@/app/page"
-import { Button } from "@/components/ui/button"
-import { Share2, RotateCcw } from "lucide-react"
+import { motion } from "framer-motion";
+import type { Food } from "@/app/page";
+import { Button } from "@/components/ui/button";
+import { Share2, RotateCcw } from "lucide-react";
 
 interface ResultScreenProps {
-  winner: Food
-  onRestart: () => void
+  winner: Food;
+  onRestart: () => void;
 }
 
 export default function ResultScreen({ winner, onRestart }: ResultScreenProps) {
@@ -17,13 +17,15 @@ export default function ResultScreen({ winner, onRestart }: ResultScreenProps) {
         title: "음식 월드컵 결과",
         text: `오늘은 ${winner.name}을(를) 먹자!`,
         url: window.location.href,
-      })
+      });
     } else {
       // Fallback for browsers that don't support Web Share API
-      navigator.clipboard.writeText(`오늘은 ${winner.name}을(를) 먹자! ${window.location.href}`)
-      alert("결과가 클립보드에 복사되었습니다!")
+      navigator.clipboard.writeText(
+        `오늘은 ${winner.name}을(를) 먹자! ${window.location.href}`
+      );
+      alert("결과가 클립보드에 복사되었습니다!");
     }
-  }
+  };
 
   return (
     <motion.div
@@ -57,7 +59,10 @@ export default function ResultScreen({ winner, onRestart }: ResultScreenProps) {
               className="absolute top-32 left-1/2 transform -translate-x-1/2 flex space-x-2"
             >
               {[...Array(12)].map((_, i) => (
-                <div key={i} className="w-6 h-12 bg-white rounded-b-lg shadow-lg" />
+                <div
+                  key={i}
+                  className="w-6 h-12 bg-white rounded-b-lg shadow-lg"
+                />
               ))}
             </motion.div>
 
@@ -68,7 +73,10 @@ export default function ResultScreen({ winner, onRestart }: ResultScreenProps) {
               className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex space-x-2"
             >
               {[...Array(12)].map((_, i) => (
-                <div key={i} className="w-6 h-12 bg-white rounded-t-lg shadow-lg" />
+                <div
+                  key={i}
+                  className="w-6 h-12 bg-white rounded-t-lg shadow-lg"
+                />
               ))}
             </motion.div>
           </div>
@@ -174,5 +182,5 @@ export default function ResultScreen({ winner, onRestart }: ResultScreenProps) {
         <div className="text-8xl font-bold text-white">탁!</div>
       </motion.div>
     </motion.div>
-  )
+  );
 }

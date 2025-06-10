@@ -9,7 +9,6 @@ interface TournamentScreenProps {
   onComplete: (winner: Food) => void;
 }
 
-// Sample food data - replace with actual images
 const foodData: Record<FoodCategory, Food[]> = {
   한식: [
     {
@@ -507,7 +506,6 @@ export default function TournamentScreen({
   const [winners, setWinners] = useState<Food[]>([]);
 
   useEffect(() => {
-    // Initialize tournament with shuffled foods
     const foods = [...foodData[category]].sort(() => Math.random() - 0.5);
     setCurrentRound(foods);
     setCurrentMatch(0);
@@ -519,21 +517,16 @@ export default function TournamentScreen({
     const newWinners = [...winners, selectedFood];
 
     if (currentMatch + 2 < currentRound.length) {
-      // More matches in current round
       setCurrentMatch(currentMatch + 2);
       setWinners(newWinners);
     } else {
-      // Round complete
       if (newWinners.length === 1) {
-        // Tournament complete
         onComplete(newWinners[0]);
       } else {
-        // Start next round
         setCurrentRound(newWinners);
         setCurrentMatch(0);
         setWinners([]);
 
-        // Update round name
         if (newWinners.length === 8) setRoundName("8강");
         else if (newWinners.length === 4) setRoundName("4강");
         else if (newWinners.length === 2) setRoundName("결승");
@@ -553,7 +546,6 @@ export default function TournamentScreen({
       exit={{ opacity: 0 }}
       className="w-full h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black flex flex-col items-center justify-center p-8"
     >
-      {/* Round Info */}
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -568,7 +560,6 @@ export default function TournamentScreen({
         </p>
       </motion.div>
 
-      {/* VS Battle */}
       <div className="flex items-center justify-center space-x-8 max-w-6xl w-full">
         <AnimatePresence mode="wait">
           <motion.button
@@ -626,7 +617,6 @@ export default function TournamentScreen({
         </AnimatePresence>
       </div>
 
-      {/* Progress Bar */}
       <motion.div
         initial={{ width: 0 }}
         animate={{
